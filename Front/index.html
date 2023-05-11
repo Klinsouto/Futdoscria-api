@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<title>FutdosCria</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+
+	<header id="header">
+		<h1>FutdosCria</h1>
+		<p>Os maiores campeões das principais ligas nacionais de futebol!<br />
+
+	</header>
+
+
+	<form id="signup-form" method="get" action="#">
+		<input type="number" id="id" name="id" min="1" max="20">
+		<button type="submit" id="submitBtn" onclick="searchFutdoscria()">Buscar</button>
+		<!-- <button id="submitBtn" onclick="searchFutdoscria()">Buscar</button> -->
+	</form>
+
+	<div>
+		<div>
+			<p>melhores: </p>
+			<p id='id'></p>
+			<p id='pais'></p>
+			<p id='liga'></p>
+			<p id='time'></p>
+			<p id='titulo'></p>
+		</div>
+	</div>
+
+
+	<!-- <footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+					<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled.</li><li>Credits: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</footer> -->
+
+
+	<script src="assets/js/main.js"></script>
+	<script>
+		function searchFutdoscria() {
+			$('#id').empty();
+			$('#pais').empty();
+			$('#liga').empty();
+			$('#time').empty();
+			$('#titulo').empty();
+
+			var settings = {
+				"async": true,
+				"crossDomain": true,
+				"url": "http://127.0.0.1:3000/futdoscria/",
+				"method": "GET"
+			}
+
+			$.ajax(settings).done(function (response) {
+				console.log(response);
+				$('#id').append(response.futdoscrias[0].id);
+				$('#pais').append(response.futdoscrias[0].pais);
+				$('#liga').append(response.futdoscrias[0].liga);
+				$('#time').append(response.futdoscrias[0].time);
+				$('#titulo').append(response.futdoscrias[0].titulo);
+
+			});
+
+		}
+	</script>
+
+</body>
+
+</html>
